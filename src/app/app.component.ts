@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ems-app';
+  title = 'Employee Management';
+  navigationMenu = [
+    {'name': 'Department', 'route': 'department'},
+    {'name': 'Project', 'route': 'project'},
+    {'name': 'Employee', 'route': 'employee'},
+    {'name': 'Search', 'route': 'search'},
+    {'name': 'Report', 'route': 'report'},
+    {'name': 'Result', 'route': 'result'}
+  ];
 }

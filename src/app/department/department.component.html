@@ -1,0 +1,140 @@
+
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form (ngSubmit)="onSubmit()" #departmentForm="ngForm">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-title">{{ modalTitle }}</h4>
+                    <button type="button" id="old" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                
+                <div class="modal-body"  >
+                    <div class='error-msg' id='validationSummary'></div>
+                    <div  id="confirm-msg"></div>
+                    <div class="form-group" style="display:none">
+                        <label>lastname</label>
+                        <input type="text" class="form-control" name="last_name" id="employee-lastname" required>
+                    </div>
+                    
+                    <div class="form-group" id="div1">
+                        <label>Name</label>
+                        <input type="text" [(ngModel)]="department.departmentName" #departmentName="ngModel" class="form-control" name="dept_name" id="department-name" required>
+                    </div>
+                    
+                    
+                    
+                    <div class="form-group" id="div2">
+                        <label>Description</label>
+                        <textarea [(ngModel)]="department.departmentDesc" class="form-control" name="dept_desc" id="department-description" required></textarea>
+                    </div>
+
+                        <div class="form-group" id="div1">
+                        <label>Location</label>
+                        <input [(ngModel)]="department.departmentLoc" type="text" class="form-control" name="location" id="location" required>
+                    </div>
+    
+                    <!-- <div class="form-group" id="div3">
+                        <label>Location</label>
+                            <select name="dept_loc" id="department-location" required class="form-control">
+                                <option value="">Select Location</option>
+                                <option value="Bangalore">Bangalore</option>
+                                <option value="Malaysia">Malaysia</option>
+                                <option value="USA">USA</option>
+                            </select>
+                    </div> -->
+                    
+                    <!-- <div class="form-group" id="div4">
+                            <label><b>Status</b></label>
+                            <div class="radio">
+                            <input id="active" class="status" type="radio" value="true" name="status">
+                            <label for="active"><b>Active</b> </label>
+                            <input id="inactive" class="status" type="radio" value="false" name="status">
+                            <label for="inactive"><b>Inactive </b></label>
+                            </div>
+                    </div> -->
+    
+                </div>
+                
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <input type="submit" class="btn btn-success" value="Save" id="save">
+                    <input type="hidden" name="dept_id" id="department-id" [(ngModel)]="department.departmentId" >
+                    <input type="hidden" name="dept_code" id="department-code" [(ngModel)]="department.departmentCode" >
+                    <input type="hidden" name="action"  id="update-action"/>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Button trigger modal -->
+<div class="row">
+<div class="col-lg-10" >
+<!-- <form class="form-group mb-0">
+    <input class="form-control " type="Search" placeholder="Search items based on ID and Department name" id="searchbox"
+        aria-label="Search">
+</form> -->
+</div>
+
+<div class="col-lg-2">
+<button class="btn btn-primary btn-sm add-department" data-toggle="modal" data-target="#myModal" (click)="refreshModel()">Add New Department</button>
+</div>
+</div>  
+<!-- <div class="col-lg-10 col-md-10">
+<button type="button" class="btn btn-primary add-department" (click)="refreshModel();" data-toggle="modal" data-target="#myModal">
+    Add Department
+</button>
+</div> -->
+<br/>
+<div class="col-lg-10 col-md-10">
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
+    <thead>
+        <tr>
+            <th>S.No</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let department of departments; let i = index" class="detp-{{department.id}}">
+            <td>{{i+1}}</td>
+            <td>{{department.departmentName}}</td>
+            <td>
+                <button role="button" class="btn btn-link edit-department" data-toggle="modal" data-target="#myModal" (click)="loadDepartment(department.departmentId)">
+                    <i class="fas fa-pencil-alt text-warning"></i>
+                </button> 
+                <button role="button" class="btn btn-link delete-department">
+                    <i class="fas fa-trash text-danger"></i>
+                </button>
+            </td>
+            <!-- <td><span (click)="loadDepartment(department.id); displayModal = true" class="fas fa-edit"></span> |
+                <span (click)="deleteDepartment(department.id, department.deptName, i)" class="fas fa-trash"></span>
+            </td> -->
+        </tr>
+    </tbody>
+</table>
+</div>
+<!-- <select class="browser-default custom-select">
+<option selected>Open this select menu</option>
+<option value="1">One</option>
+<option value="2">Two</option>
+<option value="3">Three</option>
+</select>
+<div class="row">
+<div class="col-md-12">
+
+    <select class="mdb-select colorful-select dropdown-primary md-form" multiple searchable="Search here..">
+    <option value="" disabled selected>Choose your country</option>
+    <option value="1">USA</option>
+    <option value="2">Germany</option>
+    <option value="3">France</option>
+    <option value="4">Poland</option>
+    <option value="5">Japan</option>
+    </select>
+    <label class="mdb-main-label">Label example</label>
+    <button class="btn-save btn btn-primary btn-sm">Save</button>
+
+</div>
+</div> -->

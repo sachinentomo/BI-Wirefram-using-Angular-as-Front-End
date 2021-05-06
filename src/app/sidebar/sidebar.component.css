@@ -1,0 +1,16 @@
+.sidebar {
+    height: 500px;
+    border: 1px solid black;
+  }
+  
+  .navigation-menu {
+    border: 1px solid black;
+  }
+  
+  .navigation-menu a {
+    width: 100%;
+  }
+  
+  .navigation-menu.active {
+    background-color: gray;
+  }/*# sourceMappingURL=sidebar.component.css.map */

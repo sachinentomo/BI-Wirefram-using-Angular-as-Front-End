@@ -1,0 +1,40 @@
+<!-- <div class="wrapper sidebar">
+    <nav id="sidebar">
+        <ul class="list-unstyled components">
+            <li class="navigation-menu"  routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *ngFor="let menu of navigationMenu">
+                <a class="btn btn-default" routerLink={{menu.route}}>{{menu.name}}</a>
+            </li>
+        </ul>
+    </nav>
+</div> -->
+
+
+
+<div class="col-lg-2">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <h4 class="ml-3">Entites</h4>
+      </li>
+    </ul>
+    <ul class="nav flex-column">
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *ngFor="let menu of navigationMenu">
+        <a class="nav-link" routerLink={{menu.route}}>{{menu.name}}</a>
+      </li>
+
+      <!-- <li class="nav-item">
+        <a class="nav-link" href="department" id="department">Department</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="project" id="project">Project</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="search.jsp">Search</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="report">Report</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="result">Result</a>
+      </li> -->
+    </ul>
+</div>
