@@ -71,17 +71,33 @@ export class DepartmentComponent implements OnInit {
     this.department.isActive=true;
   }
   onSubmit(){
-    this.newDepartment = new Department();
-    this.newDepartment.departmentName = this.department.departmentName;
-    this.newDepartment.departmentDesc = this.department.departmentDesc;
-    this.newDepartment.departmentLoc = this.department.departmentLoc;
-    this.newDepartment.isActive = true;
-    this.service.addDepartment(this.newDepartment).subscribe(response=>{
-    this.departments.push(response);
-    this.rerender();
-    });
-
+    if(this.department.departmentId==null)
+      this.addDepartment();
+      if(this.department.departmentId!=null)
+      this.editDepartment();  
+       
   }
+
+  addDepartment(){
+    this.newDepartment = new Department();
+      this.newDepartment.departmentName = this.department.departmentName;
+      this.newDepartment.departmentDesc = this.department.departmentDesc;
+      this.newDepartment.departmentLoc = this.department.departmentLoc;
+      this.newDepartment.isActive = true;
+      this.service.addDepartment(this.newDepartment).subscribe(response=>{
+      this.departments.push(response);
+      this.rerender();
+      });
+    }
+
+  editDepartment(){
+    this.service.updateDepartment(this.department).subscribe(response=>{
+      console.log(response);
+      var department = this.departments.filter((department : Department) => department.departmentId == this.department.departmentId ? department : null);
+      this.departments[this.departments.indexOf(department[0])] = response;
+      this.rerender();
+      });
+  }  
 
   loadDepartment(id:number){
       this.modalTitle = "Update Department Details";
@@ -95,6 +111,8 @@ export class DepartmentComponent implements OnInit {
           this.department.isActive = response.isActive;
         });
     }
+
+    
     
   saveDepartment(){
     this.modalTitle = "Update Department Details";
