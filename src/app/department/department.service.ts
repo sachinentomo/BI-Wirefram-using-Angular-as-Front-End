@@ -28,19 +28,18 @@ export class DepartmentService {
     return this.http.get<Department>(this.url+id);
   }
 
+  public updateDepartment(department: Department) {
+    return this.http.post<Department>(this.url, department);
+  }
  
 
   public addDepartment(dept: Department): Observable<Department>{
     return this.http.post<Department>(this.url, dept);
   }
 
-  updateDepartment= (data : any) => {
-    return this.http.put(this.url, data);
-  }
-
-  deleteDepartment = (id: string) => {
-    return this.http.delete(this.url + id);
-  }
+  // deleteDepartment = (id: string) => {
+  //   return this.http.delete(this.url + id);
+  // }
 
 
 }
