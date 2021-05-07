@@ -29,7 +29,7 @@ export class DepartmentService {
   }
 
   public updateDepartment(department: Department) {
-    return this.http.post<Department>(this.url, department);
+    return this.http.put<Department>(this.url, department);
   }
  
 

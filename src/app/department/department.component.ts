@@ -16,11 +16,6 @@ export class DepartmentComponent implements OnInit {
   department:Department;
   newDepartment:Department;
   displayModal = false;
-  // departmentId = '';
-  // departmentName = '';
-  // departmentDesc = '';
-  // departmentLoc = '';
-  //departments: any;
   modalTitle:string;
 
   @ViewChild(DataTableDirective)
@@ -70,6 +65,7 @@ export class DepartmentComponent implements OnInit {
     this.department.departmentLoc = '';
     this.department.isActive=true;
   }
+
   onSubmit(){
     if(this.department.departmentId==null)
       this.addDepartment();
@@ -93,8 +89,8 @@ export class DepartmentComponent implements OnInit {
   editDepartment(){
     this.service.updateDepartment(this.department).subscribe(response=>{
       console.log(response);
-      var department = this.departments.filter((department : Department) => department.departmentId == this.department.departmentId ? department : null);
-      this.departments[this.departments.indexOf(department[0])] = response;
+      var department1 = this.departments.filter((department : Department) => department.departmentId == this.department.departmentId ? department : null);
+      this.departments[this.departments.indexOf(department1[0])] = response;
       this.rerender();
       });
   }  
@@ -102,7 +98,7 @@ export class DepartmentComponent implements OnInit {
   loadDepartment(id:number){
       this.modalTitle = "Update Department Details";
         this.service.getDepartment(id)
-        .subscribe((response : any) =>{
+        .subscribe((response : Department) =>{
           this.department.departmentId = response.departmentId;
           this.department.departmentCode = response.departmentCode;
           this.department.departmentName = response.departmentName;
@@ -113,16 +109,18 @@ export class DepartmentComponent implements OnInit {
     }
 
     
+
     
-  saveDepartment(){
-    this.modalTitle = "Update Department Details";
-    if (this.department.departmentId) {
-      //this.editDepartment();
-    }
-    else{
-     // this.addDepartment();
-    }
-  }
+    
+  // saveDepartment(){
+  //   this.modalTitle = "Update Department Details";
+  //   if (this.department.departmentId) {
+  //     //this.editDepartment();
+  //   }
+  //   else{
+  //    // this.addDepartment();
+  //   }
+  // }
 //   editDepartment(){
 //     var date = new Date();
 //     var dateString = date.getDate() + '/' + date.getMonth() + 1 + '/' + date.getFullYear();

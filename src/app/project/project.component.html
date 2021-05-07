@@ -1,1 +1,162 @@
-<p>project works!</p>
+<div id="addModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form (ngSubmit)="onAddSubmit()">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-title">Add New Project</h4>
+                    <button type="button" id="old1" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                
+                <div class="modal-body"  >
+                    <div class='error-msg' id='validationSummary'></div>
+                    <div  id="confirm-msg"></div>
+                    <div class="form-group" style="display:none">
+                        <label>lastname</label>
+                        <input type="text" class="form-control" name="last_name" id="employee-lastname" required>
+                    </div>
+                    
+                    <div class="form-group" id="div1">
+                        <label>Name</label>
+                        <input type="text" [(ngModel)]="newProject.projectName"  class="form-control" name="projectName" id="projectName" required>
+                    </div>
+                    
+                    
+                    
+                    <div class="form-group" id="div2">
+                        <label>Description</label>
+                        <textarea [(ngModel)]="newProject.projectDesc" class="form-control" name="projectDesc" id="projectDesc" required></textarea>
+                    </div>
+    
+                </div>
+                
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <input type="submit" class="btn btn-success" value="Save" id="save">
+                    <input type="hidden" name="action"  id="update-action"/>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="updateModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form (ngSubmit)="onUpdateSubmit()">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-title">Update Project Details</h4>
+                    <button type="button" id="old2" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                
+                <div class="modal-body"  >
+                    <div class='error-msg' id='validationSummary'></div>
+                    <div  id="confirm-msg"></div>
+                    <div class="form-group" style="display:none">
+                        <label>lastname</label>
+                        <input type="text" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group" id="div1">
+                        <label>Name</label>
+                        <input type="text" [(ngModel)]="project.projectName" name="projectName1" class="form-control"  required>
+                    </div>
+                    
+                    
+                    
+                    <div class="form-group" id="div2">
+                        <label>Description</label>
+                        <textarea [(ngModel)]="project.projectDesc" name="projectDesc1" class="form-control" required></textarea>
+                    </div>
+    
+                </div>
+                
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <input type="submit" class="btn btn-success" value="Save">
+                    <input type="hidden" name="projectId1" [(ngModel)]="project.projectId" >
+                    <input type="hidden" name="projectCode1" [(ngModel)]="project.projectCode" >
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div> 
+
+
+
+
+
+
+<!-- Button trigger modal -->
+<div class="row">
+<div class="col-lg-10" >
+<!-- <form class="form-group mb-0">
+    <input class="form-control " type="Search" placeholder="Search items based on ID and Department name" id="searchbox"
+        aria-label="Search">
+</form> -->
+</div>
+
+<div class="col-lg-2">
+<button class="btn btn-primary btn-sm add-department" data-toggle="modal" data-target="#addModal" (click)="refreshModel()">Add New Project</button>
+</div>
+</div>  
+<!-- <div class="col-lg-10 col-md-10">
+<button type="button" class="btn btn-primary add-department" (click)="refreshModel();" data-toggle="modal" data-target="#myModal">
+    Add Department
+</button>
+</div> -->
+<br/>
+<div class="col-lg-10 col-md-10">
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
+    <thead>
+        <tr>
+            <th>S.No</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let project of projects; let i = index" class="detp-{{project.projectId}}">
+            <td>{{i+1}}</td>
+            <td>{{project.projectName}}</td>
+            <td>
+                <button role="button" class="btn btn-link edit-department" data-toggle="modal" data-target="#updateModal" (click)="loadProject(project.projectId)">
+                    <i class="fas fa-pencil-alt text-warning"></i>
+                </button> 
+                <button role="button" class="btn btn-link delete-department">
+                    <i class="fas fa-trash text-danger"></i>
+                </button>
+            </td>
+            <!-- <td><span (click)="loadDepartment(department.id); displayModal = true" class="fas fa-edit"></span> |
+                <span (click)="deleteDepartment(department.id, department.deptName, i)" class="fas fa-trash"></span>
+            </td> -->
+        </tr>
+    </tbody>
+</table>
+</div>
+<!-- <select class="browser-default custom-select">
+<option selected>Open this select menu</option>
+<option value="1">One</option>
+<option value="2">Two</option>
+<option value="3">Three</option>
+</select>
+<div class="row">
+<div class="col-md-12">
+
+    <select class="mdb-select colorful-select dropdown-primary md-form" multiple searchable="Search here..">
+    <option value="" disabled selected>Choose your country</option>
+    <option value="1">USA</option>
+    <option value="2">Germany</option>
+    <option value="3">France</option>
+    <option value="4">Poland</option>
+    <option value="5">Japan</option>
+    </select>
+    <label class="mdb-main-label">Label example</label>
+    <button class="btn-save btn btn-primary btn-sm">Save</button>
+
+</div>
+</div> -->
